@@ -1,0 +1,139 @@
+body{
+	margin: 18px 82px 0px 82px; 
+	border: 2px groove;
+}
+
+h1,h3,h4,div, .m{
+	margin: 0px;
+}
+
+h1#head1{
+	padding-top: 20px;
+	font-size: 20px;
+	position: relative;
+	left: 15px
+}
+
+h3#head2{
+	font-size: 16px;
+	position: relative;
+	left: 20px;
+}
+header {
+ 	background-color: #4279A5;
+    height: 74px;  
+    margin: 0px;
+    color: white;
+    border-bottom: 1px solid white;
+}
+#navbar{
+    list-style-type: none;
+    padding: 0;
+    margin: 0px;
+    overflow: hidden; 
+    background-color: #528ABD;
+    height: 23px;
+}
+li.a {
+    float: left;
+    border-right:1px solid white;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 5px 12px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.flex-container1{
+    display: -webkit-flex;
+    display: flex;
+   /* background-color: lightgrey;*/
+    height: auto;
+}
+#flex-container2{
+    display: -webkit-flex;
+    display: flex;
+  /*  background-color: lightgrey;*/
+    height: auto;
+}
+#flex-item1 {
+   /* background-color: cornflowerblue;*/
+    padding: 15px;
+    width: 70%;
+    height: auto;
+}
+#flex-item2 {
+    /*margin: 10px 10px 0px 0px;*/
+    width: 30%;
+    padding: 15px;
+    height: auto;
+
+}
+p#rightbox{
+	margin: 0;
+	padding: 10px;
+    border: 1px solid black;
+    background-color: #FFFBFF;
+}
+#flex-item3{
+	display: flex;
+	width: 70%;
+	padding: 0px 10px 0px 10px;
+	/*background-color: pink;*/
+}
+#flex-item5{
+	width: 35%;
+	/*background-color: #f9f2ca;*/
+}
+#lowerleftbox{
+    margin-top: 10px;
+    padding: 10px 10px 30px 10px;
+    border: 1px solid black;  
+    background-color: #FFFBFF;
+}  
+}
+#imp{
+color: red;
+}
+#sm-txt{
+	font-size: 15px;
+}
+#dl-tag{
+	position: relative;
+	left: 20px;
+}
+#dd-tag{
+	position: absolute;
+	top: 23px;
+	margin: 0px;
+	left: 20px;
+}
+#flex-item6{
+	width: 55%;
+	padding-left: 30px;
+	/*background-color: #f4d3a8;*/
+}
+#flex-item4{
+	width: 30%;
+}
+h3.title{
+	padding-bottom: 10px;
+}
+.links{
+    position: relative;
+    left:10px;
+    padding: 5px;
+    margin: 0px;
+    color: #4279A5;
+}
+li.menu{
+    list-style-type: none;
+    margin-bottom: 10px;
+    color: #4279A5;
+}
+.footer{
+	margin-top: 15px;
+    background-color: #4279A5;
+    padding: 10px;
+}

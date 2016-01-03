@@ -1,0 +1,41 @@
+<DOCTYPE! HTML>
+    <html>
+    <head>
+        <title>Exercise1</title>
+        </head>
+    <body>
+        <label>Convert Fahrenheit to Celsius and vice versa</label><br><br>
+        <label>Enter Fahrenheit  </label>
+        <input type="text" id="f"><br><br>
+        <label>Celsius value: </label>
+        <p id="c-value"></p>
+        
+         <script>
+         var e1 = document.getElementById('f');
+         e1.addEventListener("keyup", convert,false);
+           
+        function convert(){
+             var x = e1.value;
+            var validate = /^\d*(\.\d{1})?\d{0,1}$/;
+             document.getElementById('f').style.borderColor = "";
+            if(validate.test(x)){
+            
+             var ans = x * 9 / 5 + 32;
+             document.getElementById("c-value").innerHTML = Math.round(ans);
+            
+            }
+                               
+            else{
+               
+                 document.getElementById('f').style.borderColor = 'red';
+                 document.getElementById("c-value").innerHTML = "";
+                 alert("Please enter valid value");
+                   
+            }
+        }
+        
+        </script>
+        </body>
+    
+    </html>
+    </DOCTYPE!>

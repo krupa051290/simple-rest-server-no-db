@@ -1,0 +1,107 @@
+<DOCTYPE! html>
+    <html>
+    <head>
+        <title>Exsercise4</title>
+       <link rel="stylesheet" type="text/css" href="stylesheets/ex1.css">
+        </head>
+    <body>
+        <div id="form-div">
+        <form>
+            FirstName: <input type="text" value="" id="fname" ><br><br>
+            LastName: <input type="text" value="" id="lname"><br><br>
+            <input type="radio" name="sex" value="male">Male<br>
+            <input type="radio" name="sex" value="female">Female<br><br>
+            Select state: <select id="state" value="select state"> 
+              <option value="NJ">New Jersey</option>
+              <option value="NY">New York</option>
+              <option value="OH">Ohio</option>
+              <option value="TX">Texas</option>
+            </select><br><br>
+            <input type="button" value="save" id="data">
+            
+            </form>
+        </div>
+        <div id="view-div">
+            
+            <div>
+            Your name is: <span id="dflname"></span>
+               
+                <p id="dsex"></p>
+                <p id="dstate"></p>
+            </div>
+            <input type="button" value="edit" id="edit" style="visibility:hidden;">
+    
+        </div>
+        
+        <script>
+            document.getElementById('data').addEventListener("click",getData, false);
+          
+           var result = []; 
+        function getData(){
+            result[0] = document.getElementById('fname').value;
+             result[1] = document.getElementById('lname').value;
+            
+            var gender = document.getElementsByName('sex');
+                
+            for(var i in gender){
+               if (gender[i].checked) {
+                        result[2] = gender[i].value;
+                    break;
+                }
+            
+            }
+            result[3] = document.getElementById('state').value;
+            displayData(result);
+           
+        }
+            
+            function displayData(arr){
+                document.getElementById('dflname').innerHTML =  arr[0] + " "+ arr[1];
+                document.getElementById('dsex').innerHTML = arr[2];
+                  document.getElementById('dstate').innerHTML = arr[3];
+            document.getElementById('edit').style.visibility = 'visible';
+                
+                deleteData();
+            }
+            
+            document.getElementById('edit').addEventListener("click",editData, false);
+           
+            function deleteData(){
+              document.getElementById('fname').value = "";
+             document.getElementById('lname').value = "";
+           var gender = document.getElementsByName('sex');
+                
+            for(var i in gender){
+               if (gender[i].checked) {
+                       gender[i].checked = false;
+                    break;
+                }
+                var y =  document.getElementById('state');
+                y.selectedIndex = false;
+                //.checked = ;
+            
+            }
+            
+            }
+            
+             function editData(){
+               document.getElementById('fname').value = result[0];
+               document.getElementById('lname').value = result[1];
+              var gender = document.getElementsByName('sex');
+                
+            for(var i in gender){
+               if (gender[i].value == result[2]) {
+                       gender[i].checked = 'true';
+                    break;
+                }
+                
+                 document.getElementById('state').value = result[3];
+            
+            }
+            
+            }
+            
+        </script>
+        </body>
+    </html>
+    </DOCTYPE!>

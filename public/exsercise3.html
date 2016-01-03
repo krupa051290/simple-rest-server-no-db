@@ -1,0 +1,56 @@
+<DOCTYPE! html>
+    <html>
+        <head>
+        <title>Exsercise3</title>
+        </head> 
+    <body>
+        <h1>Checkboxes</h1>
+        <input type="checkbox" class="ans" name="lang" value="Javascript">Javascript<br>
+        <input type="checkbox" class="ans" name="lang" value="Java">Java<br>
+        <input type="checkbox" class="ans" name="lang" value="Node.js">Node.js<br>
+        <input type="checkbox" class="ans" name="lang" value="html">html<br>
+        <input type="checkbox" class="ans" name="lang" value="css">css<br>
+        <input type="checkbox" class="ans" name="lang" value="Ruby">Ruby<br>
+        <input type="checkbox" class="ans" name="lang" value="c++">c++<br>
+        <input type="checkbox" class="ans" name="lang" value="objective-c">objective-c<br><br>
+        
+        <input type="button" id="selectLang" value="select">
+        
+        <script>
+         var checkboxes  = document.getElementsByClassName('ans');
+        for(var i = 0; i < checkboxes.length; i++){
+            
+          checkboxes[i].addEventListener('click', function(){
+        
+               alert("you selected " +  this.value);
+
+             }, false);
+        }
+
+        document.getElementById('selectLang').addEventListener("click",do_this,false);
+
+
+            function do_this(){
+                var checkboxes = document.getElementsByName('lang');
+                var button = document.getElementById('selectLang');
+
+                if(button.value == 'select'){
+                    for (var i in checkboxes){
+                        checkboxes[i].checked = 'true';
+                    }
+                    button.value = 'deselect'
+                }else{
+                    for (var i in checkboxes){
+                        checkboxes[i].checked = '';
+                    }
+                    button.value = 'select';
+                }
+            }
+        
+        </script>
+        
+        </body>
+    </html>
+    
+    
+    </DOCTYPE!>

@@ -1,0 +1,71 @@
+<DOCTYPE! HTML>
+    <html>
+        <head>
+            <title>exsercise2</title>
+        </head>
+        <body id="container">
+        <header>
+            
+            <h1><center>My Blog</center></h1>
+            <center><img  src="images/pic2.jpg" id="hide1" height="100px" width="50px"></center>
+            </header>
+        
+       <ul id="ul-Elements">
+      <li>Home</li>       
+      <li>Portfolio</li> 
+      <li>Menu3</li>
+      <li>Menu4</li>
+      </ul>
+            <div>
+            <p id="hide2">This page demonstrates how to create a textbox border around your HTML textboxes.
+
+Textboxes are input fields created by the element. You can use the CSS border property to add a border around your HTML textboxes. You can also use border-width, border-style, and border-color, but the border property covers all of these anyway.
+
+Here are some examples of textbox borders.</p>
+                
+            </div>
+            <div>
+            <button type="button" id="hide">Hide Elements</button>
+            <button type="button" id="show">Show Elements</button>
+             <button type="button" id="showList">Show List</button>
+            
+            </div>
+            <script>
+           window.addEventListener('load',hello,false);
+           document.getElementById('hide').addEventListener("click",hideMe, false);
+           document.getElementById('show').addEventListener("click",showMe, false);
+           document.getElementById('showList').addEventListener("mouseover",showUl, false);
+           document.getElementById('showList').addEventListener("mouseout",hideUl, false);
+                
+                
+                function hideMe(){
+                document.getElementById('hide1').style.visibility = "hidden";
+                document.getElementById('hide2').style.visibility = "hidden";
+                
+                }
+                 function showMe(){
+                document.getElementById('hide1').style.visibility = "visible";
+                document.getElementById('hide2').style.visibility = "visible";
+                
+                }
+                 function showUl(){
+                document.getElementById('ul-Elements').style.visibility = "visible";
+                document.getElementById('ul-Elements').style.visibility = "visible";
+                
+                }
+                
+                  function hideUl(){
+                document.getElementById('ul-Elements').style.visibility = "hidden";
+                document.getElementById('ul-Elements').style.visibility = "hidden";
+                
+                }
+                function hello(){
+                alert("welcome to my blog");
+                }
+                
+            
+            
+            </script>
+        </body>
+    </html>
+    </DOCTYPE!>
