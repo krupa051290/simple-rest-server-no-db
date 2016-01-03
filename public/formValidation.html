@@ -1,0 +1,95 @@
+<DOCTYPE! html>
+    <html>
+    <head>
+        <title>Form validation</title>
+        <link rel="stylesheet" type="text/css" href="stylesheets/formvalidation.css">
+        </head>
+        <body>
+        <div id="container">
+  <div id="container_body">
+    <div>
+      <p class="head_para">Form Validated Using Javascript</p>
+    </div>
+    <!--Form  start-->
+    <div id="form_name">
+      <div class="firstnameorlastname">
+       <form name="form" >
+       <div id="errorBox"></div>
+           <label>FirstName: </label>
+        <input type="text" name="Name" value="" placeholder="First Name"  class="input_name" id="fname"><br>
+           <label>LastName: </label>
+        <input type="text" name="LastName" value="" placeholder="Last Name" class="input_name" id="lname"> <br>
+           
+      </div>
+      <div>
+        State: <select name="state" id="state">
+          <option value="" selected>Select State</option>
+          <option value="1">NJ</option>
+          <option value="2">NY</option>
+          <option value="3">OH</option>
+          <option value="4">CA</option>
+          <option value="5">MA</option>
+        </select>
+       
+      </div>
+      <div id="radio_button"><label>Gender: </label>
+        <input type="radio" name="radiobutton" value="Female">
+        <label >Female</label>
+        &nbsp;
+        <input type="radio" name="radiobutton" value="Male">
+        <label >Male</label><br><br>
+      </div>
+       <div>
+           <input type="checkbox" name="accept" id="accept"> I agree to the terms and conditions <br><br>
+           <input type="button" id="user_details" value="Save">
+      </div>
+     </form>
+    </div>
+    <!--form ends-->
+  </div>
+</div>
+<script>
+            document.getElementById('user_details').addEventListener('click',submitData,false);
+  
+            var regrexName = /^[A-Za-z]+$/;
+    
+            function submitData(){
+                document.getElementById("fname").style.backgroundColor = ""  
+                document.getElementById("lname").style.backgroundColor = "";
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var state = document.getElementById("state").value;
+                
+                if(!regrexName.test(fname) || fname == ""){
+                    document.getElementById("fname").style.backgroundColor = "red";
+                     document.getElementById("fname").focus;
+                    return false;
+                    }
+                 if(!regrexName.test(lname)  || lname == "" ){
+                    document.getElementById("lname").style.backgroundColor = "red";
+                 return false;   
+                 }
+                 if(state == ""){
+                     alert("Please select state");
+                return false;
+                 }
+                if(document.getElementsByName("radiobutton")[0].checked == false && document.getElementsByName("radiobutton")[1].checked ==                     false){
+                alert("Please select gender");
+                    return false;
+                }
+                else if(document.getElementById("accept").checked == false){
+                    alert("please agree to the terms and condition");
+                        return false;
+                
+                }
+               else{
+                alert("form saved succesfully");
+               }
+                
+            }
+    
+            
+            </script>
+</body>
+    </html>
+    </DOCTYPE!>
