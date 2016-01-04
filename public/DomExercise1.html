@@ -7,15 +7,18 @@
         <body>
         <div id="form-div">
             
-            <form>
+            <form id="add-fruits">
                 <input type="checkbox" name="fruits" value="apple">Apple<br><br>
                 <input type="checkbox" name="fruits" value="banana">Banana<br><br>
                 <input type="checkbox" name="fruits" value="mango">Mango<br><br>
                 <input type="checkbox" name="fruits" value="berry">Berry<br><br>
                 <input type="checkbox" name="fruits" value="Grape">Grape<br><br> 
-            
             </form>
+            <div id="add-fruit">
+                <br><br><button value="Add fruit" id="add">Add fruit</button>
             </div>
+            </div>
+            
             
             <div id="check-div">
             <p id="ans"></p>    
@@ -23,20 +26,23 @@
             </div>
             <script>
             
+        
            var checkboxs = document.getElementsByName("fruits");
+                parent = document.getElementById('check-div');
               
                 for(var i=0; i<checkboxs.length; i++){
                     
-                    checkboxs[i].addEventListener("click",function(){
+                    checkboxs[i].addEventListener("click",function(){       //how to pass this object reference in the function?
                                                   
                          if(this.checked == true){
                             var ele = document.createElement("P");
-                            document.getElementById('check-div').appendChild(ele).innerHTML = this.value; 
+                             ele.setAttribute("id",this.value);
+                            parent.appendChild(ele).innerHTML = this.value; 
                         
                         }
                         
-                        else {
-                        
+                        else if(this.checked == false) {
+                            parent.removeChild(document.getElementById(this.value));
                         } 
                                                   
                                                   
@@ -45,6 +51,27 @@
                     
                  
                 }
+                //I am not sure if this the correct way to add element 
+        document.getElementById("add").addEventListener("click", function(){
+                var newfruit = prompt("Please enter fruit you would like to add");
+                 var addCheckbox = document.getElementById("add-fruits");
+                if(newfruit !== null){
+                    var newcb = document.createElement('input');
+                    newcb.type = "checkbox";
+                    newcb.name = "fruits";
+                    newcb.value = newfruit;
+                    addCheckbox.appendChild(newcb);
+                    addCheckbox.appendChild(document.createTextNode(newfruit));
+                    addCheckbox.appendChild(document.createElement('br'));
+            
+                    return true;
+                }
+               
+                else{
+                    return false;
+                }
+            
+        },false);
            
             </script>
         </body>
