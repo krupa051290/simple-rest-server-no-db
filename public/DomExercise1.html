@@ -1,0 +1,52 @@
+<DOCTYPE! html>
+    <html>
+    <head>
+        <title>Dom Exercise1</title>
+           <link rel="stylesheet" type="text/css" href="stylesheets/ex1.css">
+        </head>
+        <body>
+        <div id="form-div">
+            
+            <form>
+                <input type="checkbox" name="fruits" value="apple">Apple<br><br>
+                <input type="checkbox" name="fruits" value="banana">Banana<br><br>
+                <input type="checkbox" name="fruits" value="mango">Mango<br><br>
+                <input type="checkbox" name="fruits" value="berry">Berry<br><br>
+                <input type="checkbox" name="fruits" value="Grape">Grape<br><br> 
+            
+            </form>
+            </div>
+            
+            <div id="check-div">
+            <p id="ans"></p>    
+            
+            </div>
+            <script>
+            
+           var checkboxs = document.getElementsByName("fruits");
+              
+                for(var i=0; i<checkboxs.length; i++){
+                    
+                    checkboxs[i].addEventListener("click",function(){
+                                                  
+                         if(this.checked == true){
+                            var ele = document.createElement("P");
+                            document.getElementById('check-div').appendChild(ele).innerHTML = this.value; 
+                        
+                        }
+                        
+                        else {
+                        
+                        } 
+                                                  
+                                                  
+                            
+       },false);
+                    
+                 
+                }
+           
+            </script>
+        </body>
+    </html>
+    </DOCTYPE>

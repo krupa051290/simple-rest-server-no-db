@@ -1,7 +1,14 @@
-#form-div, #view-div{
+#form-div{
     border: 1px groove;
     float: left;
     width: 450px;
     margin-right: 20px;
+    padding: 15px
+}
+
+#check-div{
+    border: 1px groove;
+    float: left;
+    width: 350px;
     padding: 15px
 }
