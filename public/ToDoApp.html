@@ -1,0 +1,136 @@
+<DOCTYPE! html>
+    <html>
+    <head>
+        <title>ToDoApp</title>
+           <link rel="stylesheet" type="text/css" href="stylesheets/todo.css">
+        </head>
+    <body>
+        <div id="container">
+        <h1>My Todo App</h1>
+        <div><input type="text" name="todo" id="whattodo" placeholder="What you want to do?"></div>
+            
+        <p class="line"></p>
+        <div>
+         <div>   
+        <button type="button" value="All" name="All" id="btnAll">All</button>
+        <button type="button" value="Complete" name="Complete" id="btnComplete">Complete</button>
+        <button type="button" value="Pending" name="Pending" id="btnPending" class="button">Pending</button>
+             
+             </div>
+            <div>
+                <br>
+                <br>    
+            <input type="checkbox" name="selectde" value="select/deselect" id="de-select"><span>select/deselect</span>
+              <div id="todonames">
+                
+                </div>  
+            </div>
+            <button type="button" value="removePending" name="rmPending" class="rmpending">Remove Pending</button>
+        </div>
+    </div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                
+                
+            $("#btnPending").on("click", function(){
+                
+               // $(this).addClass("btn-color");
+                showAllCheckbox();
+             $("#todonames input:checkbox:checked").closest(".todochk").hide();
+            });
+                
+            $("#btnComplete").on("click",function(){
+                
+              //   $(this).addClass("btn-color");
+                 showAllCheckbox();
+             $("#todonames input:checkbox:not(:checked)").closest(".todochk").hide();
+            });
+                
+            $("#btnAll").on("click",function(){
+                
+              //  $(this).addClass("btn-color");
+                showAllCheckbox();
+            });
+                
+                
+            $(".todochk").("mouseover", function(){
+            
+                
+            
+            });    
+                
+            function showAllCheckbox(){
+            
+             $("#todonames input:checkbox").closest(".todochk").show();
+            }    
+                
+            $(".rmpending").on("click", function(){
+            
+             $("#todonames input:checkbox:checked").closest(".todochk").remove();
+            });
+                
+            $("#whattodo").on("keypress",function(e){
+                if(e.keyCode == 13){
+                    
+                    var ans = $('#whattodo').val();
+                    if(ans == ""){
+                        alert("Please input the todo thing");}
+                    else{
+                  $("#todonames").append("<p class='todochk'><input type='checkbox' name='todos' value="+ans+"><span>"+ans+"</span></p>");
+                        $("#whattodo").val("");
+                    }   
+                
+                }
+            
+            });
+          
+            $("#de-select").on("click",function(){
+                
+                var selectde =  $("#todonames input:checkbox");
+                               
+                   if($(this).is(":checked")){
+                        
+                        selectde.prop('checked',true);
+                       selectde.next().css({"color":"red"});
+                       
+                    }
+                
+                    else{
+                    
+                        $("#todonames input:checkbox").prop('checked',false);
+                         selectde.next().css({"color":"black"});
+                    }
+                }); 
+                
+           $("#todonames").on("click",":checkbox",function(){
+                
+               var chk = $(this);
+            
+               if( $("#todonames input:checkbox:checked").length ==  $("#todonames input:checkbox").length){
+                    
+                    $("#de-select").prop('checked',true);
+               }
+                else{
+                    $("#de-select").prop('checked',false);
+                }
+                    
+                if(chk.is(":checked")){
+                    
+                    chk.next().css({"color":"red"});
+                
+                }
+                else{
+                
+                     chk.next().css({"color":"black"});
+                }
+           });
+                
+            
+                              
+                              
+        });
+        </script>
+        </body>
+    </html>
+    </DOCTYPE!>

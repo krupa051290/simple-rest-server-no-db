@@ -1,0 +1,46 @@
+#container{
+ width:450px;
+ margin: auto;
+ padding: 10px;
+ }
+
+.line{
+border: 2px solid black;
+}
+
+.todochk{
+    font-size: 20px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+input[type="text"]{
+
+    width: 250px;
+    height: 40px;
+}
+
+button{
+    
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.rmpending{
+
+    background-color: #0039FF;
+    color: white;
+    padding: 5px;
+    float: right;
+    margin-top: 10px;
+}
+
+.button:active{
+
+    background-color: #0039FF;
+}
+
+.button:normal{
+
+ background-color: none;
+}
