@@ -8,17 +8,17 @@
         <div id="form-div">
             
             <form id="add-fruits">
-                <input type="checkbox" name="fruits" value="apple">Apple<br><br>
-                <input type="checkbox" name="fruits" value="banana">Banana<br><br>
-                <input type="checkbox" name="fruits" value="mango">Mango<br><br>
-                <input type="checkbox" name="fruits" value="berry">Berry<br><br>
-                <input type="checkbox" name="fruits" value="Grape">Grape<br><br> 
+                <input type="checkbox" name="fruits" value="apple"><span>Apple</span><br><br>
+                <input type="checkbox" name="fruits" value="banana"><span>Banana</span><br><br>
+                <input type="checkbox" name="fruits" value="mango"><span>Mango</span><br><br>
+                <input type="checkbox" name="fruits" value="berry"><span>Berry</span><br><br>
+                <input type="checkbox" name="fruits" value="Grape"><span>Grape</span><br><br> 
+               
             </form>
-            <div id="add-fruit">
-                <br><br><button value="Add fruit" id="add">Add fruit</button>
-            </div>
-            </div>
             
+             <button value="Add fruit" id="add">Add Fruit</button>
+            </div>
+             
             
             <div id="check-div">
             <p id="ans"></p>    
@@ -26,10 +26,80 @@
             </div>
             <script>
             
+                var parent = document.getElementById("form-div");
+                 child = document.getElementById('check-div');
+                parent.addEventListener("click", fruits,false);
+                
+                    function fruits(e){
+                        
+                        var chk = e.target;
+                        switch(e.target.tagName){
+                        
+                            case 'SPAN':
+                                chk = chk.previousElementSibling;
+                                chk.checked = !chk.checked;  
+                            case 'INPUT':
+                                   if(chk.checked == true){
+                                       var ele = document.createElement("P");
+                                       ele.setAttribute("id",chk.value);
+                                       child.appendChild(ele).innerHTML = chk.value; 
+                                } else if(chk.checked == false) {
+                                    child.removeChild(document.getElementById(chk.value));
+                                }
+                                break;
+                                
+                            case 'BUTTON':
+                                 var newfruit = prompt("Please enter fruit you would like to add");
+                                 var addCheckbox = document.getElementById("add-fruits");
+                                if(newfruit !== null){
+                                    var newcb = document.createElement('input');
+                                    newcb.type = "checkbox";
+                                    newcb.name = "fruits";
+                                    newcb.value = newfruit;
+                                    addCheckbox.appendChild(newcb);
+                                    addCheckbox.appendChild(document.createTextNode(newfruit));
+                                    addCheckbox.appendChild(document.createElement('br'));
+                                    addCheckbox.appendChild(document.createElement('br'));
+                                  break;
+                                }
+
+                                else{
+                                  break;
+                                }
+
+                            
+                            default:
+                                break;
+                        
+                        }
+                         
+                        }
+                        
+                        
+                      /*  switch(e.target){
+                        
+                            case checkbox:
+                                
+                                
+                                break;
+                            case span:
+                                
+                                break;
+                                
+                            case button:
+                                
+                                break;
+                        
+                        }*/
+                    
+                
         
-           var checkboxs = document.getElementsByName("fruits");
+        /*   var checkboxs = document.getElementsByName("fruits");
                 parent = document.getElementById('check-div');
               
+                
+                
+                
                 for(var i=0; i<checkboxs.length; i++){
                     
                     checkboxs[i].addEventListener("click",function(){       //how to pass this object reference in the function?
@@ -38,7 +108,6 @@
                             var ele = document.createElement("P");
                              ele.setAttribute("id",this.value);
                             parent.appendChild(ele).innerHTML = this.value; 
-                        
                         }
                         
                         else if(this.checked == false) {
@@ -72,7 +141,7 @@
                 }
             
         },false);
-           
+*/           
             </script>
         </body>
     </html>

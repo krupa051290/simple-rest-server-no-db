@@ -1,0 +1,96 @@
+<DOCTYPE! html>
+    <html>
+    <head>
+        <title>jquery1</title>
+         <link rel="stylesheet" type="text/css" href="stylesheets/ex1.css">
+         
+        </head>
+        <body>
+         <div id="form-div">
+            
+            <form id="add-fruits">
+                <input type="checkbox" name="fruits" value="apple"><span>Apple</span><br><br>
+                <input type="checkbox" name="fruits" value="banana"><span>Banana</span><br><br>
+                <input type="checkbox" name="fruits" value="mango"><span>Mango</span><br><br>
+                <input type="checkbox" name="fruits" value="berry"><span>Berry</span><br><br>
+                <input type="checkbox" name="fruits" value="Grape"><span>Grape</span><br><br> 
+               
+            </form>
+            
+             <button value="Add fruit" id="add">Add Fruit</button>
+            </div>
+            <div id="check-div">
+            <p id="ans"></p>    
+            </div>
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script>
+            
+                $(document).ready(function(){
+                
+                $("#form-div").on("click",":checkbox",function(){  
+                     
+                    var currentEle = $(this);
+                    
+                    appendFruit(currentEle);
+//                    if($(this).is(":checked")){
+//                        
+//                      $("#check-div").append("<p id="+$(this).val()+">"+ $(this).val()+"</p>");  
+//                        
+//                    }
+//                    
+//                    else if(!$(this).is(":checked")){
+//                    
+//                        $("#check-div").find("#"+$(this).val()).remove();
+//                    }
+//                
+                });
+                
+                $("#form-div").on("click","button",function(){
+                    
+                    var fruit = prompt("please enter fruit you want to add");
+                    
+                    $("#add-fruits").append("<input type='checkbox' name='fruits' value="+fruit+"><span>"+fruit+"</span><br><br>");
+                
+                    });
+                    
+                $("#form-div").on("click","span",function(){
+                    
+                    var chk = $(this).prev();
+                    
+                     chk.prop('checked',  !chk.prop('checked'));
+                    
+                    appendFruit(chk);
+                    
+//                    if(chk.is(":checked")){
+//                         chk.prop('checked', false);
+//                            $("#check-div").find("#"+chk.val()).remove();
+//                    }
+//                        else if(!chk.is(":checked")){
+//                            chk.prop('checked', true);
+//                             $("#check-div").append("<p id="+chk.val()+">"+ chk.val()+"</p>");  
+//                        }
+                    
+                
+                    });
+                    
+                    function appendFruit(currentEle){ 
+                        
+                        if(currentEle.is(":checked")){
+                        
+                      $("#check-div").append("<p id="+currentEle.val()+">"+ currentEle.val()+"</p>");  
+                        
+                    }
+                    
+                    else if(!currentEle.is(":checked")){
+                    
+                        $("#check-div").find("#"+currentEle.val()).remove();
+                    }
+                
+
+                    }
+                });
+            
+            </script>
+        </body>
+    </html>
+    </DOCTYPE!>
