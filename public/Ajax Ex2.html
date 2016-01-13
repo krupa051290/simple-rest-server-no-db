@@ -1,0 +1,60 @@
+<DOCTYPE! html>
+    <html>
+    <head>
+        </head>
+    <body>
+        
+        <form id="user_profile">
+            Firstname:<input type="text" name="fname" id="fname"><br><br>
+            Lastname:<input type="text" name="lname" id="lname"><br><br>
+                     <input type="radio" name="sex" value="Male">Male
+                     <input type="radio" name="sex" value="Female">Female
+                           <br><br>
+            State: <select id="state">
+                      <option value="NJ">New Jersey</option>
+                      <option value="NY">New York</option>
+                      <option value="OH">Ohio</option>
+                      <option value="TX">Texas</option>
+                    </select>  <br><br>  
+            
+             <input type="submit" value="submit" id="submit">
+        </form>
+        
+        <div id="result">
+    
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        
+        <script>
+            $(document).ready(function(){
+                
+                $("#submit").click(function(e){
+                     e.preventDefault();
+                    
+                var user_info = new Object;
+                user_info.fname = $("#fname").val();
+                user_info.lname = $("#lname").val();
+                user_info.sex = $('input:radio[name=sex]:checked').val();
+                user_info.state = $( "#state option:selected" ).text();
+                    
+                    $.ajax({
+                        type: "GET",
+                        url: "/users", 
+                        data: user_info,
+                        success: function(result){
+                            console.log(""+result);
+                            var appendTo;
+                            $.each(result, function(i,obj){
+                                console.log(obj.fname);
+                               appendTo+= i+' <label>Name: '+obj.fname+'</label>&nbsp;<label>'+obj.lname+'</label><br><p>Sex: '
+                                            +obj.sex+'</p><p>State: '+obj.state+'</p>';
+                            });
+                            $("#result").append(appendTo);
+
+                    }});
+                });
+            });
+            </script>
+        </body>
+    </html>
+    </DOCTYPE!>
