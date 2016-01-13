@@ -28,14 +28,15 @@
         <script>
             $(document).ready(function(){
                 
+                $("#submit").click(function(e){
+                     e.preventDefault();
+                    
                 var user_info = new Object;
                 user_info.fname = $("#fname").val();
                 user_info.lname = $("#lname").val();
                 user_info.sex = $('input:radio[name=sex]:checked').val();
                 user_info.state = $( "#state option:selected" ).text();
-                 
-                $("#submit").click(function(e){
-                     e.preventDefault();
+                    
                     $.ajax({
                         type: "POST",
                         url: "/users", 
