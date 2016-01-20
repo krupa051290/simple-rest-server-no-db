@@ -4,10 +4,10 @@
   <title>Bootstrap Case</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="stylesheet" type="text/css" href="stylesheets/ex1.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="stylesheets/ex1.css">
 </head>
 <body>
 
@@ -98,50 +98,35 @@
                 items.desc = $("#desc").val();
                 items.price = $("#price").val();
                 
+                var appendTo;
                   $.ajax({
                         type: "POST",
                         url: "/products", 
                         data: items,
                         success: function(result){
-                          
+                        
+                appendTo = "<div class='well well-lg'><div><h3>"+result.itemname+"</h3> <p id='delete' class='pull-right'><span class='glyphicon glyphicon-remove-sign a' id='"+result.id+"'></span></p><span class='label label-primary pull-right a'>"+result.price+"</span></div><h6>"+result.desc+"</h6></div>";
                  
+                       $("div#addeditems:last").append(appendTo);       
                     }
+                    
                   });
             
             });
         
-            $("#add").on("load", function(){
-            
-                  $.ajax({
-                        type: "GET",
-                        url: "/products", 
-                
-                        success: function(result){
-                            console.log(""+result);
-                         
-                            var appendTo="";
-                        $.each(result, function(i,obj){
-
-                            appendTo += "<div class='well well-lg'><div><h3>"+obj.itemname+"</h3> <p class='pull-right'><span class='glyphicon glyphicon-remove-sign a' id='"+obj.id+"'></span></p><span class='label label-primary pull-right a'>"+obj.price+"</span></div><h6>"+obj.desc+"</h6></div>";
-                            
-                            
-                        });
-                            $("#addeditems").append(appendTo);
-                    }
-                  });
-            
-            });
+        
             
             $("#addeditems").on("click", ".glyphicon", function(){
             
               var id =  $(this).attr('id');
+                $(this).closest('div.well').remove();
                 
                 $.ajax({
               
                     type: "DELETE",
                     url: "/products/"+id,
                   success: function(result){
-                  
+                       
                     }
                 });
             });
