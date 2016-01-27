@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+     <link rel="stylesheet" type="text/css" href="stylesheets/ex1.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Store</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Catlog</a></li> 
+      <li><a href="#">Contact</a></li> 
+    </ul>
+  </div>
+</nav>
+<div class="container">
+ 
+     <div class="row">
+    <div class="col-sm-4">
+            <div class="list-group">
+              <a href="#" class="list-group-item active">Cras Justo Odio</a>
+              <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+              <a href="#" class="list-group-item">Third item</a>
+            </div>
+         
+         </div>
+    <div class="col-sm-8">
+        <form class="form-horizontal" role="form"> 
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="search">Search</label> 
+                <div  class="col-sm-4">
+                <input type="search" class="form-control" placeholder="Search">
+                </div>
+            </div>
+            
+          <div class="form-group">
+                <label class="control-label col-sm-2" for="additem">Add Item</label>
+           
+            <div class="col-xs-3"><input type="text" class="form-control" placeholder="Item name" id="itemname"></div>
+              <div class="col-xs-3"><input type="text" class="form-control"  placeholder="Description" id="desc"></div>
+              <div class="col-xs-3"><input type="text" class="form-control" placeholder="Price" id="price"></div>
+              <button type="button" class="btn btn-default" id="add">Add</button>
+ 
+             
+            </div>
+        </form>  
+        
+        <script src="javascripts/script.js"></script>
+        <script src="javascripts/handlebars-v4.0.5.js"></script>
+        
+        <div id="addeditems">
+        <script id="template" type="text/x-handlebars-template">
+            
+          {{#each this}}
+        <div class="well well-lg">
+            <div><h3>{{itemname}}</h3>
+                 <p class="pull-right"><span class="glyphicon glyphicon-remove-sign a" id="{{id}}"></span></p>
+               <span class="label label-primary pull-right a ">{{price}}</span>
+            </div>
+        <h6>{{desc}}</h6>
+        </div>
+            {{/each}}
+        </script>     
+        </div>
+    </div>
+  </div>
+</div>
+ <script src="javascripts/handlebars-v4.0.5.js"></script>
+    <script>
+        $(document).ready(function(){
+            
+              $.ajax({
+                        type: "GET",
+                        url: "/products", 
+                        success: function(result){
+                            
+                             var txt;   
+                            for(x in result){
+                                txt += result[x] +" ";
+                            
+                            }
+                            
+                            console.log(""+txt);
+                            var template = Handlebars.compile($("#template").html());
+                            $("#addeditems").append(template(result));
+
+                    }
+                  });
+            
+            
+                      $("#add").on("click", function(e){
+            
+                          e.preventDefault();
+                var items = {
+                
+                    itemname : $("#itemname").val(),
+                    desc  : $("#desc").val(),
+                    price : $("#price").val()
+                
+                };              
+                   console.log(""+items);       
+              
+                var appendTo;
+                  $.ajax({
+                        type: "POST",
+                        url: "/products", 
+                        data: items,
+                        success: function(result){   
+                           
+                        var arr= [];    
+                            var txt;
+                            for(x in result){
+                                txt += result[x] +" ";
+                            
+                            }
+                           
+                       console.log(""+txt);  
+                   var template = Handlebars.compile($("#template").html());
+                           arr[0] = result;
+                            
+                            console.log(""+arr[0]);
+                          $("div#addeditems:last").append(template(arr));
+                        
+                    }
+                    
+                  });
+            
+            });
+        
+        
+            
+            $("#addeditems").on("click", ".glyphicon", function(){
+            
+              var id =  $(this).attr('id');
+                
+                var ele =  $(this);
+               
+            
+                $.ajax({
+              
+                    type: "DELETE",
+                    url: "/products/"+id,
+                  success: function(result){
+                      
+                        ele.closest('div.well').remove();   
+                    }
+                });
+            });
+        
+        });
+    
+    </script>
+</body>
+</html>
