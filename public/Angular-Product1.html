@@ -81,7 +81,7 @@
         productpagemod.factory('factoryproducts', function($http){
         
             datafactory = {};
-            var temp =[];
+          
             datafactory.getProducts = function(){
                 
             $http({
@@ -92,17 +92,17 @@
                         return response;            
                   }, function errorCallback(response) {
                  
-                  });
-                             
-               return temp;
+                  });              
+              
             };
             
             return datafactory;
         });
         
         productpagemod.controller('productcontroller', function($scope,factoryproducts){
+            
             $scope.products = factoryproducts.getProducts();
-        
+            
         
         });
     
