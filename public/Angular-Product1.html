@@ -36,7 +36,7 @@
             </div>
          
          </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8"  ng-controller="productcontroller">
         <form class="form-horizontal" role="form"> 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="search">Search</label> 
@@ -48,10 +48,10 @@
           <div class="form-group">
                 <label class="control-label col-sm-2" for="additem">Add Item</label>
            
-            <div class="col-xs-3"><input type="text" class="form-control" placeholder="Item name" id="itemname"></div>
-              <div class="col-xs-3"><input type="text" class="form-control"  placeholder="Description" id="desc"></div>
-              <div class="col-xs-3"><input type="text" class="form-control" placeholder="Price" id="price"></div>
-              <button type="button" class="btn btn-default" id="add">Add</button>
+            <div class="col-xs-3"><input type="text" class="form-control" placeholder="Item name" id="itemname" ng-model ="prod.itemname"></div>
+              <div class="col-xs-3"><input type="text" class="form-control"  placeholder="Description" id="desc" ng-model="prod.desc"></div>
+              <div class="col-xs-3"><input type="text" class="form-control" placeholder="Price" id="price" ng-model="prod.price"></div>
+              <button type="button" class="btn btn-default" id="add" ng-click="addProduct()">Add</button>
  
              
             </div>
@@ -60,11 +60,11 @@
         <script src="javascripts/script.js"></script>
          <script src="javascripts/angular.min.js"></script>
         
-        <div  ng-controller="productcontroller">
+        <div>
           
         <div class="well well-lg" ng-repeat="prod in products">
             <div><h3>{{prod.itemname}}</h3>
-                 <p class="pull-right"><span class="glyphicon glyphicon-remove-sign a" id="{{prod.id}}"></span></p>
+                 <p class="pull-right"><span class="glyphicon glyphicon-remove-sign a" id="{{prod.id}}" ng-click="deleteProduct(prod.id)"></span></p>
                <span class="label label-primary pull-right a ">{{prod.price}}</span>
             </div>
         <h6>{{prod.desc}}</h6>
@@ -81,28 +81,75 @@
         productpagemod.factory('factoryproducts', function($http){
         
             datafactory = {};
-          
+        
             datafactory.getProducts = function(){
                 
-            $http({
+         return $http({
                   method: 'GET',
                   url: '/products'
-                }).then(function successCallback(response) {
-                        console.log("response "+response);
-                        return response;            
-                  }, function errorCallback(response) {
-                 
-                  });              
-              
+                });             
             };
             
             return datafactory;
         });
         
-        productpagemod.controller('productcontroller', function($scope,factoryproducts){
+        productpagemod.controller('productcontroller', function($scope,$http){
             
-            $scope.products = factoryproducts.getProducts();
+             $scope.products = [];      
+                                        
+            function getProducts() {
+                
+                $http({                  
+                    method: 'GET',
+                    url: '/products'
+                })
+                .success(function (response) {      
+                    $scope.products = response;    
+                });
+            }
+         
+            getProducts();
             
+            
+            $scope.addProduct = function(){
+                
+                var prodObj = {
+                    itemname :  $scope.prod.itemname,
+                    desc : $scope.prod.desc,
+                    price : $scope.prod.price
+                
+                };
+                
+                  $http({                  
+                    method: 'POST',
+                    url: '/products',
+                    data: prodObj
+                })
+                .success(function (response) {      
+                     $scope.products.push(response);
+                      
+                });
+            };
+            
+            $scope.deleteProduct = function(id){
+                
+                $http({                  
+                    method: 'DELETE/'+id,
+                    url: '/products',
+                })
+                .success(function (response) {      
+                     $scope.products.push(response);
+                      
+                });
+            };
+            
+//         factoryproducts.getProducts().then(function successCallback(response) {
+//                        console.log("response "+response);
+//                          $scope.products =response;       
+//                  }, function errorCallback(response) {
+//            
+//                  });
+           
         
         });
     
